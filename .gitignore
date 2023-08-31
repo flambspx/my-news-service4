@@ -1,1 +1,2 @@
 run-configurations/my-news-service-01-dev/.env
+**/local/*

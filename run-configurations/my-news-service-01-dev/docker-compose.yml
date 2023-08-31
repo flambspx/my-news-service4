@@ -8,7 +8,10 @@ services:
     volumes:
       - ${HOST_MSR_LICENSE_FILE}:${MSR_LICENSE_MOUNT_POINT}
       - ./application.properties:${APP_PROPS_MOUNT_POINT}
+      - ./local/:/mnt/local/
+      - ./scripts/:/mnt/scripts/
     environment:
       - SAG_IS_LICENSE_FILE=${MSR_LICENSE_MOUNT_POINT}
       - SAG_IS_CONFIG_PROPERTIES=${APP_PROPS_MOUNT_POINT}
       - IS_ADMIN_PWD
+    entrypoint: /mnt/scripts/entrypoint.sh
