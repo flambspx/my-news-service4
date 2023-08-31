@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  msr-lean:
+    image: sxw4acr.azurecr.io/msr-1015-lean-original-recipe:Fixes_23-08-30
+    ports:
+      - ${HOST_PORT_PREFIX}55:5555
+    volumes:
+      - ${HOST_MSR_LICENSE_FILE}:${MSR_LICENSE_MOUNT_POINT}
+      - ./application.properties:${APP_PROPS_MOUNT_POINT}
+    environment:
+      - SAG_IS_LICENSE_FILE=${MSR_LICENSE_MOUNT_POINT}
+      - SAG_IS_CONFIG_PROPERTIES=${APP_PROPS_MOUNT_POINT}
+      - IS_ADMIN_PWD
