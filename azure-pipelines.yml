@@ -1,9 +1,6 @@
 # Example Software AG Products containers building pipeline
 # Fork and specialize according to need
 
-trigger:
-- main
-
 pool:
   name: SpxWorkshopAgents
   vmImage: Canonical:0001-com-ubuntu-confidential-vm-focal:20_04-lts-cvm:latest
