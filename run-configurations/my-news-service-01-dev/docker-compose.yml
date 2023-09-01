@@ -20,4 +20,7 @@ services:
       - SMTP_HOST_PORT
       - SMTP_USER_EMAIL
       - SMTP_USER_PASS
+      # NewsAPI service
+      - NEWSAPI_BASE_URL
+      - NEWS_API_KEY
     ##entrypoint: /mnt/scripts/entrypoint.sh

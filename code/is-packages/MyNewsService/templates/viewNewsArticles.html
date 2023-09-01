@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <h1>News articles for "%value q%" from %value from% having language code %value languageCode%</h1>
+
+    %ifvar errorMessage -notempty%
+      <h2 style="color: red">The service returned an error message: %value errorMessage%</h2>
+    %else%
+      <h2>%value queryResponse/totalResults% articles retrieved</h2>
+      %loop queryResponse/articles%
+        <hr>
+        <h3><a href="%value url%">%value title%</a></h3>
+        <p>Published by %value author% at %value publishedAt% on %value source/name%</p>
+        <img style="max-width: 100%;" src="%value urlToImage%" alt="%value title%">
+      %endloop%
+    %endif%
+  </body>
+</html>
