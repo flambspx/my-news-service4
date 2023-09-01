@@ -5,27 +5,25 @@ pool:
   name: SpxWorkshopAgents
   vmImage: Canonical:0001-com-ubuntu-confidential-vm-focal:20_04-lts-cvm:latest
 
-  steps:
+steps:
+   # grant execution permissions to the repository scripts
+   - script: find . -type f -name "*.sh" -exec chmod u+x "{}" \;
+     displayName: "Grant shell execution permissions"
 
-    # grant execution permissions to the repository scripts
-    - script: find . -type f -name "*.sh" -exec chmod u+x "{}" \;
-      displayName: "Grant shell execution permissions"
-
-    # Some variables must be propagated accross steps
-    - script: ./buildScripts/01.setJobInitialVariables.sh
-      displayName: 'Job Locals'
+   # Some variables must be propagated accross steps
+   - script: ./buildScripts/01.setJobInitialVariables.sh
+     displayName: 'Job Locals'
     
-    # update ubuntu machine
-    - script: ./buildScripts/02.prepareAgentMachine.sh
-      displayName: 'System software preparation'
+   # update ubuntu machine
+   - script: ./buildScripts/02.prepareAgentMachine.sh
+     displayName: 'System software preparation'
 
-    # Service Principal is required to connect to ACR
-    - task: DownloadSecureFile@1
-      name: acrSpCredentials
-      displayName: 'Download Service Principal Credentials'
-      inputs:
-        secureFile: 'acr.sp.credentials.sh'
+   # Service Principal is required to connect to ACR
+   - task: DownloadSecureFile@1
+     name: acrSpCredentials
+     displayName: 'Download Service Principal Credentials'
+     inputs:
+       secureFile: 'acr.sp.credentials.sh'
 
-    # Containerize
-    - script: ./buildScripts/04.build.sh
-      displayName: 'Build'
+   - script: ./buildScripts/04.build.sh
+     displayName: 'Build'
