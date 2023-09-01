@@ -21,7 +21,7 @@ echo "Dumping environment for demo purposes"
 env | sort
 
 echo "Logging in to repository ${MY_AZ_ACR_URL}"
-buildah login -u "${AZ_ACR_SP_ID}" -p "${AZ_ACR_SP_SECRET}" "${MY_AZ_ACR_URL}"  || exit 3
+buildah login -u "aab538e5-c9f1-4805-8487-1a7390082606" -p "bT_8Q~8xhm9Ii4MsH_G5TCXYYTq1~IJFq~n-JbmN" "sxw4acr.azurecr.io" || exit 3
 
 echo "Building tag ${OUR_SERVICE_TAG_BASE}"
 buildah bud \
