@@ -10,10 +10,8 @@ pool:
 
   steps:
 
-    # In general the provided code is reusable and will be templatized when mature enough
-    # Write here the job specific parameters for now
-    # This job is specialized for MSR/1015/lean
-    - script: chmod u+x ./buildScripts/*.sh
+    # grant execution permissions to the repository scripts
+    - script: find . -type f -name "*.sh" -exec chmod u+x "{}" \;
       displayName: "Grant shell execution permissions"
 
     # Some variables must be propagated accross steps
